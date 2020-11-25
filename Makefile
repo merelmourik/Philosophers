@@ -8,13 +8,11 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -I. -L. $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) -I. $(SRCS) -o $(NAME)
 	@echo "Done"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-.PHONY: clean fclean re all
 
 clean:
 	@echo ">> Cleaning..."
@@ -22,6 +20,7 @@ clean:
 
 fclean: clean
 	@rm -f *.o
-	@rm -f philo_one
+	@rm a.out
+	@rm philo_one
 
 re: fclean all
