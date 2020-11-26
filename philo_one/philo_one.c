@@ -6,46 +6,52 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/25 12:32:40 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/11/26 15:40:50 by mmourik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	validate_input(int argc, char **argv, t_philo *philo)
+void	*the_table(void *data_ptr)
 {
-	if (argc != 5 && argc != 6)
+	t_data *data;
+
+	data = (t_data*)data_ptr;
+	printf("%d\n", data->eat);
+	// long time = time_stamp();
+	// if (data->index < data->philo)
+		// printf("Philo number %d is created at %ld\n", data->index, time);
+	data->index++;
+	return NULL;
+}
+
+int		create_philosophers(t_data *data)
+{
+	int i;
+	pthread_t thread[data->philo];
+	
+	i = 0;
+	while (i < data->philo)
 	{
-		write(1, "Not the correct amount of arguments\n", 37);
-		return (-1);
-	}
-	philo->philo = ft_atoi(argv[1]);
-	philo->die = ft_atoi(argv[2]);
-	philo->eat = ft_atoi(argv[3]);
-	philo->sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		philo->repetition = ft_atoi(argv[5]);
-	if ((philo->philo < 2 || philo->die <= 0 || philo->eat <= 0 || \
-	philo->sleep <= 0) || (argc == 6 && philo->repetition <= 0))
-	{
-		write(1, "Invalid input\n", 15);
-		return (-1);
+		pthread_create(&(thread[i]), NULL, &the_table, &data);
+		i++;
 	}
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo *philo;
+	t_data *data;
 
-	if (!(philo = malloc(sizeof(t_philo))))
+	if (!(data = malloc(sizeof(t_data))))
 		return (-1);
-	if (validate_input(argc, argv, philo) == -1)
+	if (validate_input(argc, argv, data) == -1)
 	{
-		free(philo);
+		free(data);
 		return (-1);
 	}
-	printf("%d\n", philo->eat);
+	create_philosophers(data);
+	// printf("%d\n", data->eat);
 	system("leaks philo_one");
 	return (0);
 }

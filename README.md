@@ -15,7 +15,10 @@ The function used in the code are:
     The free function frees the allocated memory. It returns nothing. 
 - write:
     ssize_t write(int fd, const void *buf, size_t nbyte);
-    Write tries to write nbyte of data to the object referenced by the file descriptor(fd). Upon succesful competion the number of bytes which were written are returned, otherwise a -1 and errno is set to indicate the error.
+    Write tries to write nbyte of data to the object referenced by the file descriptor(fd). Upon succesful completion the number of bytes which were written are returned, otherwise a -1 and errno is set to indicate the error.
+- usleep:
+    int usleep(useconds_t microseconds);
+    This function suspends execution of the calling thread until either the microseconds have elapsed or a signal is deliverd to the thread and it action is to invoke a signal-catching function or to terminate the process.
 - gettimeofday:
     int gettimeofday(struct timeval *restrict tp, void *restrict tzp);
     Gives the system's notion of the current Greenwich time.
@@ -31,7 +34,7 @@ A thread is a single sequence stream within in a process. Threads have some of t
 - pthread_create: 
     int pthread_create(pthread_t *thread, const pthread_attr_t *attr, 
     void *(*start_routine)(void *), void *arg);
-    This function is used to create a new thread, with attributes specified bij attr, within a process. Upon succesful competion this function will store the ID of the created thread in the location specified by thread. Upon succes the function will return 0, otherwise an error number will be returned.
+    This function is used to create a new thread, with attributes specified bij attr, within a process. Upon succesful completion this function will store the ID of the created thread in the location specified by thread. Upon succes the function will return 0, otherwise an error number will be returned.
     - thread: pointer to an unsigned integer value that returns the thread id of the thread created.
     - attr: pointer to a structure that is used to define thread attributes like detached state, scheduling policy en stack address. If attr is NULL, the default attributes are used.
     - start_routine: pointer to a subroutine that is executed by the thread. The thread is creating  by executing start_routin with args as its sole argument.
@@ -43,7 +46,7 @@ A thread is a single sequence stream within in a process. Threads have some of t
     This function waits for the thread speciied by thread to terminate. If it is already terminated, then the function returns immediately. The thread specified by thread must be joinable. If value_ptr is not NULL, then pthread_join copies the exit status of the target thread into the location pointed to by value_ptr
 - pthread_mutex_init:
     int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
-    This function creates a nuew mutex, with attributes specified by attr. If attr is NULL, the default attributes are used. Upon succes, the function returns zero and it puts the new mutex ID into mutex(first argument), otherwise an error number will be returned.
+    This function creates a new mutex, with attributes specified by attr. If attr is NULL, the default attributes are used. Upon succes, the function returns zero and it puts the new mutex ID into mutex(first argument), otherwise an error number will be returned.
 - pthread_mutex_destroy:
     int pthread_mutex_destroy(pthread_mutex_t *mutex);
     This function frees the resource allocated for mutex. Upon succes it will return zero, otherwise an aerror number will be returned.
