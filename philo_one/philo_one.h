@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/26 15:38:27 by mmourik       ########   odam.nl         */
+/*   Updated: 2020/11/29 13:30:29 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,25 @@
 # include <pthread.h>
 # include <string.h>
 
-typedef struct	s_data {
-	int			philo;
-	int			die;
-	int			eat;
-	int			sleep;
-	int			repetition;
-	int			index;
-}				t_data;
+typedef struct		s_data {
+	int				philo_amount;
+	int				die;
+	int				eat;
+	int				sleep;
+	int				repetition;
+	pthread_mutex_t	*fork;
+}					t_data;
+
+typedef struct		s_philo
+{
+	int				id;
+	int				amount_eaten;
+	int				time_until_death;
+	int				start;
+	int				alive;
+	pthread_mutex_t	talking;
+	t_data			*data;
+}					t_philo;
 
 int		ft_atoi(const char *str);
 long	time_stamp();

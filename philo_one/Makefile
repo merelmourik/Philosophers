@@ -1,7 +1,7 @@
 NAME = philo_one
-SRCS = philo_one.c utils.c
+SRCS = main.c utils.c
 CC = gcc
-CFLAGS = -I. -Wall -Werror -Wextra -g
+CFLAGS = -I. -Wall -Werror -Wextra -g -pthread
 AS = -I. -Wall -Werror -Wextra -g -fsanitize=address -O1 -fno-omit-frame-pointer
 OBJS = $(SRCS:.c=.o)
 
