@@ -1,5 +1,5 @@
 NAME = philo_one
-SRCS = main.c utils.c
+SRCS = main.c utils.c initialize.c activate.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra -g -pthread
 AS = -I. -Wall -Werror -Wextra -g -fsanitize=address -O1 -fno-omit-frame-pointer
