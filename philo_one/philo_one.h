@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/30 10:16:32 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/11/30 11:25:19 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_data {
 	int				die;
 	int				eat;
 	int				sleep;
-	int				repetition;
+	int				repetition;			//ik kan ook op deze gaan tellen, maar alleen als ik met een pointer werk
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*message;
 }					t_data;
@@ -44,19 +44,20 @@ typedef struct		s_philo
 	int				id;
 	int				time_until_death;
 	int				start;
-	int				repetition;
 	int				left;
 	int				right;
 	t_data			*data;
 	t_status		status;
 }					t_philo;
 
-int				ft_atoi(const char *str);
-unsigned long	time_stamp();
-int				initialize_input(int argc, char **argv, t_data *data);;
-void			*activate_philo(void *philosopher);
-t_philo			*initialize_philosophers(t_data *data);
-char			*long_to_str(unsigned long value);
-
+int		ft_atoi(const char *str);
+char	*time_stamp();
+int		initialize_input(int argc, char **argv, t_data *data);;
+void	*activate_philo(void *philosopher);
+t_philo	*initialize_philosophers(t_data *data);
+char	*long_to_str(unsigned long value);
+int		ft_strlen(const char *str);
+char	*itoa(unsigned int nb);
+void	message(t_status status, int id);
 
 #endif
