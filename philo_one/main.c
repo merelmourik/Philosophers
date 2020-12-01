@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/30 11:58:02 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 09:37:58 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	philosopher_threads(t_philo *philo)
 
 	thread = malloc(sizeof(pthread_t) * philo->data->philo_amount);
 	i = 0;
-	printf("repetition = %d\n", philo[3].data->repetition);
 	while (i < philo->data->philo_amount)
 	{
-		pthread_create(&thread[i], NULL, activate_philo, &philo[i]);		//wordt hier nou een kopie meegegeven?
+		pthread_create(&thread[i], NULL, activate_philo, &philo[i]);
 		pthread_join(thread[i], NULL);			//wachten tot vorige thread klaar is
 		i++;
 	}
-	// free(thread);
+	free(thread);		//deze lost iets op
 }
 
 int		main(int argc, char **argv)
@@ -47,8 +46,11 @@ int		main(int argc, char **argv)
 	data->message = malloc(sizeof(pthread_mutex_t));
 	philosopher_threads(philo);
 	free(philo);
-	free(data->fork_mutex);
-	// system("leaks philo_one");
+	free(data->fork_mutex);		//alleen deze lijkt echt iets op te lossen
+	// free(philo->data);
+	// free(data->message);
+	// free(data);
+	system("leaks philo_one");
 	(void)argc;
 	(void)argv;
 	return (0);

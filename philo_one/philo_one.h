@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/30 11:25:19 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 09:13:26 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct		s_data {
 typedef struct		s_philo
 {
 	int				id;
-	int				time_until_death;
-	int				start;
+	int				time_to_die;
+	int				repetition;
 	int				left;
 	int				right;
 	t_data			*data;
@@ -58,6 +58,6 @@ t_philo	*initialize_philosophers(t_data *data);
 char	*long_to_str(unsigned long value);
 int		ft_strlen(const char *str);
 char	*itoa(unsigned int nb);
-void	message(t_status status, int id);
+void	message(char *activity, int id);
 
 #endif
