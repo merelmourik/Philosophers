@@ -43,7 +43,7 @@ A thread is a single sequence stream within in a process. Threads have some of t
     This function marks the thread identified by thread as detached. When a detached thread terminates, its recources are automatically released back to the system without the need for another thread to join with the terminated thread. By default all threads are joinable, so to make a thread detach we need to call this function. 
 - pthread_join:
     int pthread_join(pthread_t thread, void **value_ptr);
-    This function waits for the thread speciied by thread to terminate. If it is already terminated, then the function returns immediately. The thread specified by thread must be joinable. If value_ptr is not NULL, then pthread_join copies the exit status of the target thread into the location pointed to by value_ptr
+    This function waits for the thread specified by thread to terminate. If it is already terminated, then the function returns immediately. The thread specified by thread must be joinable. If value_ptr is not NULL, then pthread_join copies the exit status of the target thread into the location pointed to by value_ptr
 - pthread_mutex_init:
     int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);
     This function creates a new mutex, with attributes specified by attr. If attr is NULL, the default attributes are used. Upon succes, the function returns zero and it puts the new mutex ID into mutex(first argument), otherwise an error number will be returned.
