@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/01 10:24:23 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 13:48:34 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@
 typedef enum		e_status {
 	ALIVE,
 	DEAD,
-	EATING,
-	FORK,
-	SLEEPING,
-	THINKING
 }					t_status;
 
 typedef struct		s_data {
@@ -37,7 +33,7 @@ typedef struct		s_data {
 	int				repetition;			//ik kan ook op deze gaan tellen, maar alleen als ik met een pointer werk
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*message_mutex;		//geen pointer nodig?
-	pthread_mutex_t *eat_mutex;
+	pthread_mutex_t *eat_mutex;		//nodig?
 }					t_data;
 
 typedef struct		s_philo
@@ -60,5 +56,6 @@ char	*long_to_str(unsigned long value);
 int		ft_strlen(const char *str);
 char	*itoa(unsigned int nb);
 void	message(char *activity, t_philo *philo);
+void	eating(t_philo *philo);
 
 #endif
