@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:33:51 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/01 09:44:45 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 10:01:12 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ void	pickup_forks(t_philo *philo)
 	pthread_mutex_lock(&(data->fork_mutex[philo->left]));
 	// hij moet hier wel wachten tot de eerste vork beschikbaar is voordat
 	// hij de ander probeert te pakken
+	// pthread_mutex_lock(data->message);
 	message(" has taken a fork\n", philo->id);
+	// pthread_mutex_unlock(data->message);
 	pthread_mutex_lock(&(data->fork_mutex[philo->right]));
 	//pthread_join?
+	// pthread_mutex_lock(&data->message);
 	message(" has taken a fork\n", philo->id);
+	// pthread_mutex_unlock(&data->message);
 }
 
 void	laydown_forks(t_philo *philo)
@@ -54,7 +58,7 @@ void	*activate_philo(void *philosopher)
 
 	philo = philosopher;
 	data = philo->data;	
-	while (philo->status == ALIVE && data->repetition > philo->repetition)
+	while (philo->status == ALIVE || data->repetition > philo->repetition)
 	{		
 		eating(philo);
 		message(" is sleeping\n", philo->id);

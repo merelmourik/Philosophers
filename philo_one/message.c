@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/01 09:40:53 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 09:58:18 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	message(char *activity, int id)
 {
 	char	*str;
 
+	// pthread_mutex_lock()
 	str = time_stamp();
 	write(1, str, ft_strlen(str));
 	write(1, " ", 1);

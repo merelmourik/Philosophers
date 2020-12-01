@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/01 09:37:58 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/01 09:56:52 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	philosopher_threads(t_philo *philo)
 	while (i < philo->data->philo_amount)
 	{
 		pthread_create(&thread[i], NULL, activate_philo, &philo[i]);
-		pthread_join(thread[i], NULL);			//wachten tot vorige thread klaar is
+		// pthread_join(thread[i], NULL);			//wachten tot vorige thread klaar is
 		i++;
 	}
 	free(thread);		//deze lost iets op
