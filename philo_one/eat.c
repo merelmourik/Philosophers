@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/01 12:06:43 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/01 13:48:05 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/02 09:32:25 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	pickup_forks(t_philo *philo)
 
 	data = philo->data;
 	pthread_mutex_lock(&(data->fork_mutex[philo->left]));
-	message(" has taken a fork\n", philo);
+	message(" has taken his left fork\n", philo);
 	pthread_mutex_lock(&(data->fork_mutex[philo->right]));
-	message(" has taken a fork\n", philo);
+	message(" has taken his right fork\n", philo);
 }
 
 static void	laydown_forks(t_philo *philo)
