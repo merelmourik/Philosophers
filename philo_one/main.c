@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:34:39 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/02 09:48:45 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ int		main(int argc, char **argv)
 	philo = initialize_philosophers(data);
 	philosopher_threads(philo);
 	free(philo);
-	free(data->fork_mutex);		//alleen deze lijkt echt iets op te lossen
-	// free(philo->data);
-	// free(data->message);
-	// free(data);
-	// system("leaks philo_one");
+	free(data->fork_mutex);
+	free(data->message_mutex);
+	free(data);
+	system("leaks philo_one");
 	(void)argc;
 	(void)argv;
 	return (0);

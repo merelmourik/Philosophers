@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:40:06 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/02 09:43:59 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	message(char *activity, t_philo *philo)
 
 	data = philo->data;	
 	pthread_mutex_lock(data->message_mutex);
-	// str = time_stamp();
-	// write(1, str, ft_strlen(str));
-	// write(1, " ", 1);
-	// free(str);
+	str = time_stamp();
+	write(1, str, ft_strlen(str));
+	write(1, "\t", 1);
+	free(str);
 	str = itoa(philo->id);
 	write(1, str, ft_strlen(str));
 	free(str);
