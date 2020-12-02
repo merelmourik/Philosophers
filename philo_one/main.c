@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:30:49 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/02 09:34:39 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ int		main(int argc, char **argv)
 		free(data);
 		return (-1);
 	}
-	data->fork_mutex = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
-	data->message_mutex = malloc(sizeof(pthread_mutex_t));
-	// data->eat_mutex = malloc(sizeof(pthread_mutex_t));
 	initialize_mutex(data);
 	philo = initialize_philosophers(data);
 	philosopher_threads(philo);
