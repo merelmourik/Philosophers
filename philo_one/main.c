@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:48:45 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/02 09:52:28 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	philosopher_threads(t_philo *philo)
 	{
 		pthread_create(&thread[i], NULL, activate_philo, &philo[i]);
 		i++;
-		usleep(20);
+		usleep(100);
 	}
 	i = 0;
 	while (i < philo->data->philo_amount)
@@ -53,7 +53,7 @@ int		main(int argc, char **argv)
 	free(data->fork_mutex);
 	free(data->message_mutex);
 	free(data);
-	system("leaks philo_one");
+	// system("leaks philo_one");
 	(void)argc;
 	(void)argv;
 	return (0);

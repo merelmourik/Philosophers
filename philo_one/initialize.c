@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:35:08 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/05 18:56:34 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	initialize_input(int argc, char **argv, t_data *data)
 	data->sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->repetition = ft_atoi(argv[5]);
+	else
+		data->repetition = -1;
 	if ((data->philo_amount < 2 || data->die <= 0 || data->eat <= 0 || \
 	data->sleep <= 0) || (argc == 6 && data->repetition <= 0))
 	{
