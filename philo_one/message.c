@@ -6,30 +6,30 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/02 09:43:59 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/05 19:11:40 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-char		*time_stamp(void)
+long	time_stamp(void)
 {
 	struct timeval	current;
-	unsigned long	stamp;
 
 	gettimeofday(&current, NULL);
-	stamp = current.tv_sec * 1000 + current.tv_usec / 1000;
-	return (long_to_str(stamp));
-}			//is dit de juiste timestamp?
+	return (current.tv_sec * 1000 + current.tv_usec / 1000);
+}
 
 void	message(char *activity, t_philo *philo)
 {
 	char	*str;
 	t_data	*data;
+	long	time;
 
 	data = philo->data;	
 	pthread_mutex_lock(data->message_mutex);
-	str = time_stamp();
+	time = time_stamp() - philo->start_time;
+	str = long_to_str(time);
 	write(1, str, ft_strlen(str));
 	write(1, "\t", 1);
 	free(str);
