@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/01 12:06:43 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/05 18:57:05 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/07 22:52:16 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	laydown_forks(t_philo *philo)
 	data = philo->data;
 	pthread_mutex_unlock(&(data->fork_mutex[philo->left]));
 	pthread_mutex_unlock(&(data->fork_mutex[philo->right]));
+	//moeten deze beschermd worden? want kan eigelijk niet fout gaan
 }
 
 void	eating(t_philo *philo)
@@ -39,8 +40,8 @@ void	eating(t_philo *philo)
 	data = philo->data;
 	pickup_forks(philo);
 	message(" is eating\n", philo);
-	usleep(philo->data->eat);
-	laydown_forks(philo);
+	usleep(data->eat);
 	if (data->repetition != -1)
 		philo->repetition++;
+	laydown_forks(philo);
 }
