@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/05 19:10:16 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/07 23:27:31 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ft_strlen(const char *str);
 char	*itoa(unsigned int nb);
 void	message(char *activity, t_philo *philo);
 void	eating(t_philo *philo);
-void	initialize_mutex(t_data *data);
+int		initialize_mutex(t_data *data);
+int		clean_exit(t_data *data, t_philo *philo);
 
 #endif

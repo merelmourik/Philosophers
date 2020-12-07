@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/05 19:06:40 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/07 23:27:03 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_philo	*initialize_philosophers(t_data *data)
 	t_philo	*philo;
 	int		i;
 
-	philo = malloc(sizeof(t_philo) * data->philo_amount);
+	if (!(philo = malloc(sizeof(t_philo) * data->philo_amount)))
+		return (NULL);
 	i = 0;
 	while (i < data->philo_amount)
 	{
@@ -57,20 +58,31 @@ t_philo	*initialize_philosophers(t_data *data)
 	return (philo);
 }
 
-void	initialize_mutex(t_data *data)
+int	initialize_mutex(t_data *data)
 {
 	int i;
 
 	i = 0;
-	data->fork_mutex = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
 	data->message_mutex = malloc(sizeof(pthread_mutex_t));
-	// data->eat_mutex = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(data->message_mutex, NULL);
-	// pthread_mutex_init(data->eat_mutex, NULL);
+	data->eat_mutex = malloc(sizeof(pthread_mutex_t));
+	data->fork_mutex = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
+	if (!data->fork_mutex || !data->message_mutex || data->eat_mutex)
+		return (-1);
+	if (pthread_mutex_init(data->message_mutex, NULL) != 0)
+		return(-1);
+	if (pthread_mutex_init(data->eat_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(data->message_mutex);
+		return(-1);
+	}
 	while (i < data->philo_amount)
 	{
-		pthread_mutex_init(&(data->fork_mutex[i]), NULL);
+		if (pthread_mutex_init(&(data->fork_mutex[i]), NULL) != 0)
+		{
+			data->philo_amount = i;
+			return (-1);
+		}
 		i++;
 	}
-	return ;
+	return (-1);
 }
