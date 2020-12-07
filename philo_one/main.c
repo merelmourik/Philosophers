@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/07 23:58:27 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/08 00:07:54 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int		main(int argc, char **argv)
 	if (philosopher_threads(philo) == -1)
 		return (clean_exit(data, philo));
 	clean_exit(data, philo);
-	system("leaks philo_one");
+	// system("leaks philo_one");
 	return (0);
 }

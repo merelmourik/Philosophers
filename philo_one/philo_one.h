@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/07 23:27:31 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/08 00:03:29 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_philo
 	int				repetition;
 	int				left;
 	int				right;
+	uint64_t		last_eaten;
 	uint64_t		start_time;
 	t_data			*data;
 	t_status		status;
