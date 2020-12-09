@@ -6,14 +6,14 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/09 11:57:43 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/09 12:05:00 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
 void	*supervision(void *supervisor_philo)
-{
+{			//deze communiceert niet met activate_philo
 	t_philo *supervisor;
 	t_data 	*data;
 	int		i;
@@ -28,6 +28,7 @@ void	*supervision(void *supervisor_philo)
 				if (supervisor[i].status == DEAD)
 					{
 						message(" died\n", &supervisor[i]);
+						pthread_mutex_lock(data->eat_mutex);
 						return (NULL);		//is dit een goede return?
 					}
 				i++;
@@ -39,8 +40,8 @@ void	*supervision(void *supervisor_philo)
 int	philosopher_threads(t_philo *philo)
 {
 	pthread_t	*thread;
-	pthread_t	*supervisor;
-	int			i;
+	pthread_t	*supervisor;		//deze free ook toevoegen
+	int			i;					//misschien beter ook in data struct stoppen?
 
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
