@@ -6,19 +6,51 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/08 00:07:54 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/09 11:57:43 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
+void	*supervision(void *supervisor_philo)
+{
+	t_philo *supervisor;
+	t_data 	*data;
+	int		i;
+
+	supervisor = supervisor_philo;
+	data = supervisor[0].data;
+	while(1)		//is deze nodig?
+		{
+			i = 0;
+			while (i < data->philo_amount)
+			{
+				if (supervisor[i].status == DEAD)
+					{
+						message(" died\n", &supervisor[i]);
+						return (NULL);		//is dit een goede return?
+					}
+				i++;
+			}
+		}
+	return (NULL);
+}
+
 int	philosopher_threads(t_philo *philo)
 {
 	pthread_t	*thread;
+	pthread_t	*supervisor;
 	int			i;
 
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
+	if (!(supervisor = malloc(sizeof(pthread_t))))
+		return (-1);		//eerst thread freeen
+	if (pthread_create(supervisor, NULL, supervision, philo) != 0)
+	{
+		free(supervisor);
+		return (-1);			//is deze error duidleijk genoeg?
+	}
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
