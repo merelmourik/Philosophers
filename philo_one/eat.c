@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/01 12:06:43 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/09 12:01:04 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/10 11:35:05 by mmourik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	eating(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	if ((time_stamp() - philo->last_eaten) < (uint64_t)data->eat)
+	if ((time_stamp() - philo->last_eaten) > (uint64_t)data->eat)
 		{
-			message(" died", philo);
+			// message(" died", philo);
 			philo->status = DEAD;
 			return;
 		}
