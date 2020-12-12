@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/08 00:03:29 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/12 10:33:02 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_data {
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*message_mutex;		//geen pointer nodig?
 	pthread_mutex_t *eat_mutex;		//nodig?
+	t_status		status;
 }					t_data;
 
 typedef struct		s_philo
