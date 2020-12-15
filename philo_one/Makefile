@@ -20,6 +20,6 @@ clean:
 
 fclean: clean
 	@rm -f *.o
-	@rm philo_one
+	@rm -f philo_one
 
 re: fclean all

@@ -6,15 +6,15 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/15 11:59:09 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 12:10:55 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	*supervision(void *supervisor_philo)
+void	*supervision(void *supervisor_philo)		//deze code herschrijven met data struct zodat hij sneller communiceert
 {
-	t_philo *philo;
+	t_philo *philo;	
 	t_data 	*data;
 	int		i;
 
@@ -25,7 +25,7 @@ void	*supervision(void *supervisor_philo)
 		i = 0;
 		while (i < data->philo_amount)
 		{
-			if (philo[i].status == DEAD)
+			if (philo[i].status == DEAD)		//veranderen voor data struct
 			{
 				message(" died\n", &philo[i]);
 				data->status = DEAD;
@@ -40,9 +40,9 @@ void	*supervision(void *supervisor_philo)
 
 int	philosopher_threads(t_philo *philo)
 {
-	pthread_t	*thread;
+	pthread_t	*thread;			//ik kan deze threads ook vanuit de main meesturen of in een struct doen
 	pthread_t	*supervisor;		//deze free ook toevoegen
-	int			i;					//misschien beter ook in data struct stoppen?
+	int			i;					
 
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
@@ -50,7 +50,7 @@ int	philosopher_threads(t_philo *philo)
 		return (-1);		//eerst thread freeen
 	if (pthread_create(supervisor, NULL, supervision, philo) != 0)
 	{
-		free(supervisor);		//and thread
+		free(supervisor);		//and free thread
 		return (-1);			//is deze error duidleijk genoeg?
 	}
 	i = 0;
@@ -62,7 +62,7 @@ int	philosopher_threads(t_philo *philo)
 			return (-1);
 		}
 		i++;
-		usleep(20);		//geen ft?
+		usleep(30);			//is dit de reden dat ze nooit dood gaan?
 	}
 	i = 0;
 	while (i < philo->data->philo_amount)
