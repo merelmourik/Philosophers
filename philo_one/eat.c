@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/01 12:06:43 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/12 10:28:17 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 11:59:57 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ void	eating(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	if ((time_stamp() - philo->last_eaten) < (uint64_t)data->eat)
+	if ((time_stamp() - philo->last_eaten) > data->die)
 		{
-			// message(" died", philo);
 			philo->status = DEAD;
 			return;
 		}
 	pickup_forks(philo);
 	pthread_mutex_lock(data->eat_mutex);
 	message(" is eating\n", philo);
-	usleep(data->eat);
-	pthread_mutex_unlock(data->eat_mutex);
 	philo->last_eaten = time_stamp();
+	ft_usleep(data->eat);
+	pthread_mutex_unlock(data->eat_mutex);
 	laydown_forks(philo);
 	if (data->repetition != -1)
 		philo->repetition++;
+	return ;
 }

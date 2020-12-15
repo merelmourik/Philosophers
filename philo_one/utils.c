@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 09:41:52 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/11/30 10:53:05 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 11:55:54 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,3 +103,11 @@ char			*long_to_str(unsigned long value)
 	return (str);
 }
 
+void	ft_usleep(uint64_t wait_time)
+{
+	uint64_t	start;
+
+	start = time_stamp();
+	while ((time_stamp() - start) < wait_time)
+		usleep(100);
+}

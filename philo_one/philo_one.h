@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/12 10:33:02 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 11:56:36 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef enum		e_status {
 
 typedef struct		s_data {
 	int				philo_amount;
-	int				die;
-	int				eat;
-	int				sleep;
+	uint64_t		die;
+	int64_t		eat;
+	int64_t		sleep;
 	int				repetition;			//ik kan ook op deze gaan tellen, maar alleen als ik met een pointer werk
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*message_mutex;		//geen pointer nodig?
@@ -51,7 +51,7 @@ typedef struct		s_philo
 }					t_philo;
 
 int		ft_atoi(const char *str);
-long	time_stamp(void);
+uint64_t time_stamp(void);
 int		initialize_input(int argc, char **argv, t_data *data);;
 void	*activate_philo(void *philosopher);
 t_philo	*initialize_philosophers(t_data *data);
@@ -62,5 +62,6 @@ void	message(char *activity, t_philo *philo);
 void	eating(t_philo *philo);
 int		initialize_mutex(t_data *data);
 int		clean_exit(t_data *data, t_philo *philo);
+void	ft_usleep(uint64_t wait_time);
 
 #endif

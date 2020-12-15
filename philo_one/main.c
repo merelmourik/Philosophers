@@ -6,14 +6,14 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/12 10:33:15 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 11:59:09 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
 void	*supervision(void *supervisor_philo)
-{			//deze communiceert niet met activate_philo
+{
 	t_philo *philo;
 	t_data 	*data;
 	int		i;
@@ -62,7 +62,7 @@ int	philosopher_threads(t_philo *philo)
 			return (-1);
 		}
 		i++;
-		usleep(100);
+		usleep(20);		//geen ft?
 	}
 	i = 0;
 	while (i < philo->data->philo_amount)

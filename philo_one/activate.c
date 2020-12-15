@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:33:51 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/12 10:32:52 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/15 11:57:43 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*activate_philo(void *philosopher)
 		eating(philo);
 		message(" is sleeping\n", philo);
 		message(" is thinking\n", philo);
-		usleep(data->sleep);
+		ft_usleep(data->sleep);
 	}
-	return (NULL);		//uitzoeken welke return het moet zijn
+	return (NULL);		
 }

@@ -6,13 +6,13 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/08 00:02:56 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/12 10:44:02 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-long	time_stamp(void)
+uint64_t	time_stamp(void)
 {
 	struct timeval	current;
 
