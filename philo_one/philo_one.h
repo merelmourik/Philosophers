@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:53:20 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:20:43 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct		s_data {
 	int64_t			eat;
 	int64_t			sleep;
 	pthread_mutex_t	*fork_mutex;
-	pthread_mutex_t	*message_mutex;		//geen pointer nodig?
+	pthread_mutex_t	*message_mutex;
 	t_status		status;
 }					t_data;
 
@@ -50,16 +50,18 @@ typedef struct		s_philo
 	t_status		status;
 }					t_philo;
 
-int		ft_atoi(const char *str);
-int64_t time_stamp(t_philo *philo);
-int		initialize_input(int argc, char **argv, t_data *data);;
-t_philo	*initialize_philosophers(t_data *data);
-int		ft_strlen(const char *str);
-void	message(char *activity, t_philo *philo);
-void	eating(t_philo *philo);
-int		initialize_mutex(t_data *data);
 int		clean_exit(t_data *data, t_philo *philo);
-void		ft_usleep(int64_t wait_time, t_philo *philo);
-void ft_putnumber(unsigned long n);
+int		ft_atoi(const char *str);
+int		ft_strlen(const char *str);
+int		initialize_input(int argc, char **argv, t_data *data);;
+int		initialize_mutex(t_data *data);
+
+int64_t time_stamp(t_philo *philo);
+t_philo	*initialize_philosophers(t_data *data);
+
+void	eating(t_philo *philo);
+void	ft_putnumber(unsigned long n);
+void	ft_usleep(int64_t wait_time, t_philo *philo);
+void	message(char *activity, t_philo *philo);
 
 #endif

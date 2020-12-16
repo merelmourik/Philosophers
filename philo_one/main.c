@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 13:00:16 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:15:33 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 static void	*activate_philo(void *philosopher)
 {
-	t_philo 	*philo;
+	t_philo		*philo;
 	t_data		*data;
 
 	philo = philosopher;
-	data = philo->data;	
+	data = philo->data;
 	philo->last_eaten = philo->start_time;
-	while (data->status == ALIVE && (data->repetition == -1 || data->repetition > philo->repetition))
-	{		
+	while (data->status == ALIVE && (data->repetition == -1 || \
+			data->repetition > philo->repetition))
+	{
 		eating(philo);
 		if (philo->data->error == -1)
 			return (NULL);
@@ -34,16 +35,17 @@ static void	*activate_philo(void *philosopher)
 	return (NULL);
 }
 
-static int philo_threads(t_philo *philo, pthread_t *thread)
+static int	philo_threads(t_philo *philo, pthread_t *thread)
 {
-	int			i;					
-	
+	int i;
+
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
-		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0 || philo->data->error == -1)
+		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0 \
+			|| philo->data->error == -1)
 		{
-			free (thread);
+			free(thread);
 			return (-1);
 		}
 		i++;
@@ -54,24 +56,24 @@ static int philo_threads(t_philo *philo, pthread_t *thread)
 	{
 		if (pthread_join(thread[i], NULL) != 0)
 		{
-			free (thread);
+			free(thread);
 			return (-1);
 		}
 		i++;
 	}
-	free (thread);
+	free(thread);
 	return (0);
 }
 
 static void	*supervision(void *supervisor_philo)
 {
-	t_philo *philo;	
-	t_data 	*data;
+	t_philo *philo;
+	t_data	*data;
 	int		i;
 
 	philo = supervisor_philo;
 	data = philo[0].data;
-	while(1)
+	while (1)
 	{
 		i = 0;
 		while (i < data->philo_amount)
@@ -98,7 +100,7 @@ static int	threads(t_philo *philo)
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
 	if (philo_threads(philo, thread) == -1)
-		return(-1);
+		return (-1);
 	return (0);
 }
 
@@ -122,11 +124,3 @@ int		main(int argc, char **argv)
 	system("leaks philo_one");
 	return (0);
 }
-
-// - Do not test with more than 200 philosphers
-// - Do not test with time_to_die or time_to_eat or time_to_sleep under 60 ms
-// - Test with 5 800 200 200, no one should die!
-// - Test with 5 800 200 200 7, no one should die and the simulation should stop when all the philosopher has eaten at least 7 times each.
-// - Test with 4 410 200 200, no one should die!
-// - Test with 4 310 200 100, a philosopher should die!
-// - Test with 2 philosophers and check the different times (a death delayed by more than 10 ms is unacceptable).

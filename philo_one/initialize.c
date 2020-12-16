@@ -6,13 +6,13 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:57:06 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:13:19 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	initialize_input(int argc, char **argv, t_data *data)
+int		initialize_input(int argc, char **argv, t_data *data)
 {
 	if (argc != 5 && argc != 6)
 	{
@@ -60,7 +60,7 @@ t_philo	*initialize_philosophers(t_data *data)
 	return (philo);
 }
 
-int	initialize_mutex(t_data *data)
+int		initialize_mutex(t_data *data)
 {
 	int i;
 
@@ -70,7 +70,7 @@ int	initialize_mutex(t_data *data)
 	if (!data->fork_mutex || !data->message_mutex)
 		return (-1);
 	if (pthread_mutex_init(data->message_mutex, NULL) != 0)
-		return(-1);
+		return (-1);
 	while (i < data->philo_amount)
 	{
 		if (pthread_mutex_init(&(data->fork_mutex[i]), NULL) != 0)

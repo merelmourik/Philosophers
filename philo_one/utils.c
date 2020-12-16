@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 09:41:52 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:55:54 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:17:01 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			ft_strlen(const char *str)
 	return (i);
 }
 
-static void ft_putchar(char c)
+static void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }

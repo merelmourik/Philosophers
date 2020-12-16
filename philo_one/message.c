@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:55:09 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:16:33 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ int64_t	time_stamp(t_philo *philo)
 	return (current.tv_sec * 1000 + current.tv_usec / 1000);
 }
 
-void	message(char *activity, t_philo *philo)		//altijd hierna error checken
+void	message(char *activity, t_philo *philo)
 {
 	t_data		*data;
 	uint64_t	time;
 
-	data = philo->data;	
-	pthread_mutex_lock(data->message_mutex);
+	data = philo->data;
+	if (pthread_mutex_lock(data->message_mutex) != 0)
+	{
+		philo->data->error = -1;
+		return ;
+	}
 	if (data->status == DEAD)
 	{
 		pthread_mutex_unlock(data->message_mutex);
@@ -43,5 +47,6 @@ void	message(char *activity, t_philo *philo)		//altijd hierna error checken
 	write(1, "\t", 1);
 	ft_putnumber(philo->id);
 	write(1, activity, ft_strlen(activity));
-	pthread_mutex_unlock(data->message_mutex);	//protecten
+	if (pthread_mutex_unlock(data->message_mutex) != 0)
+		philo->data->error = -1;
 }
