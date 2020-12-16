@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/15 11:56:36 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 10:54:11 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ typedef enum		e_status {
 typedef struct		s_data {
 	int				philo_amount;
 	uint64_t		die;
-	int64_t		eat;
-	int64_t		sleep;
+	int64_t			eat;
+	int64_t			sleep;
 	int				repetition;			//ik kan ook op deze gaan tellen, maar alleen als ik met een pointer werk
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*message_mutex;		//geen pointer nodig?
-	pthread_mutex_t *eat_mutex;		//nodig?
 	t_status		status;
 }					t_data;
 

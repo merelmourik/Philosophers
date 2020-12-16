@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/15 12:10:55 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 10:47:58 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	*supervision(void *supervisor_philo)		//deze code herschrijven met data str
 			{
 				message(" died\n", &philo[i]);
 				data->status = DEAD;
-				pthread_mutex_lock(data->eat_mutex);
 				return (NULL);		//is dit een goede return?
 			}
 			i++;
@@ -98,3 +97,11 @@ int		main(int argc, char **argv)
 	// system("leaks philo_one");
 	return (0);
 }
+
+// - Do not test with more than 200 philosphers
+// - Do not test with time_to_die or time_to_eat or time_to_sleep under 60 ms
+// - Test with 5 800 200 200, no one should die!
+// - Test with 5 800 200 200 7, no one should die and the simulation should stop when all the philosopher has eaten at least 7 times each.
+// - Test with 4 410 200 200, no one should die!
+// - Test with 4 310 200 100, a philosopher should die!
+// - Test with 2 philosophers and check the different times (a death delayed by more than 10 ms is unacceptable).

@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/01 12:06:43 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/15 12:57:13 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 10:45:48 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ void	eating(t_philo *philo)
 			return;
 		}
 	philo->last_eaten = time_stamp();
-	// pthread_mutex_lock(data->eat_mutex);
 	message(" is eating\n", philo);
 	ft_usleep(data->eat);
-	// pthread_mutex_unlock(data->eat_mutex);
 	laydown_forks(philo);
 	if (data->repetition != -1)
 		philo->repetition++;

@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/07 23:38:56 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 10:55:04 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,11 @@ int	initialize_mutex(t_data *data)
 
 	i = 0;
 	data->message_mutex = malloc(sizeof(pthread_mutex_t));
-	data->eat_mutex = malloc(sizeof(pthread_mutex_t));
 	data->fork_mutex = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
-	if (!data->fork_mutex || !data->message_mutex || !data->eat_mutex)
+	if (!data->fork_mutex || !data->message_mutex)
 		return (-1);
 	if (pthread_mutex_init(data->message_mutex, NULL) != 0)
 		return(-1);
-	if (pthread_mutex_init(data->eat_mutex, NULL) != 0)
-	{
-		pthread_mutex_destroy(data->message_mutex);
-		return(-1);
-	}
 	while (i < data->philo_amount)
 	{
 		if (pthread_mutex_init(&(data->fork_mutex[i]), NULL) != 0)
