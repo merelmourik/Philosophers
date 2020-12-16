@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   philo_one.h                                        :+:    :+:            */
+/*   philo_two.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 14:44:34 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 15:12:32 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <semaphore.h>
 # include <string.h>
-# include <pthread.h>		//delete
+# include <pthread.h>
 
 typedef enum		e_status {
 	ALIVE,
