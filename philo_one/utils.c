@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 09:41:52 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:42:21 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 12:55:54 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@ void		ft_putnumber(unsigned long n)
 		ft_putchar(n + 48);
 }
 
-int		ft_usleep(int64_t wait_time)
+void		ft_usleep(int64_t wait_time, t_philo *philo)
 {
 	int64_t	start;
 
-	start = time_stamp();
+	start = time_stamp(philo);
 	if (start == -1)
-		return (-1);
-	while ((time_stamp() - start) < wait_time)
+		return ;
+	while ((time_stamp(philo) - start) < wait_time)
+	{
+		if (philo->data->error == -1)
+			return ;
 		usleep(100);
-	return (0);
+	}
 }
 
 int			ft_atoi(const char *str)

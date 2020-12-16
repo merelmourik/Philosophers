@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 10:55:04 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 12:57:06 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ t_philo	*initialize_philosophers(t_data *data)
 		philo[i].right = (i == data->philo_amount - 1 ? 0 : i + 1);
 		philo[i].status = ALIVE;
 		philo[i].repetition = 0;
-		philo[i].start_time = time_stamp();
+		philo[i].start_time = time_stamp(philo);
+		if (philo->data->error == -1)
+			return (NULL);
 		i++;
 	}
 	return (philo);

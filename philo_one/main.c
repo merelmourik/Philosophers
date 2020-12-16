@@ -6,13 +6,13 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:21:32 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 13:00:16 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
+static void	*activate_philo(void *philosopher)
 {
 	t_philo 	*philo;
 	t_data		*data;
@@ -27,7 +27,9 @@ static void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
 			return (NULL);
 		message(" is sleeping\n", philo);
 		message(" is thinking\n", philo);
-		ft_usleep(data->sleep);
+		ft_usleep(data->sleep, philo);
+		if (philo->data->error == -1)
+			return (NULL);
 	}
 	return (NULL);
 }
