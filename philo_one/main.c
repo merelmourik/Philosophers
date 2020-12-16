@@ -6,13 +6,13 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:16:38 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 12:21:32 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
+static void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
 {
 	t_philo 	*philo;
 	t_data		*data;
@@ -32,7 +32,7 @@ void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
 	return (NULL);
 }
 
-int philo_threads(t_philo *philo, pthread_t *thread)
+static int philo_threads(t_philo *philo, pthread_t *thread)
 {
 	int			i;					
 	
@@ -61,7 +61,7 @@ int philo_threads(t_philo *philo, pthread_t *thread)
 	return (0);
 }
 
-void	*supervision(void *supervisor_philo)
+static void	*supervision(void *supervisor_philo)
 {
 	t_philo *philo;	
 	t_data 	*data;
@@ -86,7 +86,7 @@ void	*supervision(void *supervisor_philo)
 	return (NULL);
 }
 
-int	threads(t_philo *philo)
+static int	threads(t_philo *philo)
 {
 	pthread_t	supervisor;
 	pthread_t	*thread;
