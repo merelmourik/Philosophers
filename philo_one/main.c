@@ -6,13 +6,13 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 11:27:57 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 12:16:38 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	*activate_philo(void *philosopher)
+void	*activate_philo(void *philosopher)		//hoe kan ik deze goed doen
 {
 	t_philo 	*philo;
 	t_data		*data;
@@ -23,11 +23,13 @@ void	*activate_philo(void *philosopher)
 	while (data->status == ALIVE && (data->repetition == -1 || data->repetition > philo->repetition))
 	{		
 		eating(philo);
+		if (philo->data->error == -1)
+			return (NULL);
 		message(" is sleeping\n", philo);
 		message(" is thinking\n", philo);
 		ft_usleep(data->sleep);
 	}
-	return (NULL);		
+	return (NULL);
 }
 
 int philo_threads(t_philo *philo, pthread_t *thread)
@@ -37,10 +39,10 @@ int philo_threads(t_philo *philo, pthread_t *thread)
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
-		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0)
+		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0 || philo->data->error == -1)
 		{
 			free (thread);
-			return -1;
+			return (-1);
 		}
 		i++;
 		usleep(30);
@@ -48,10 +50,10 @@ int philo_threads(t_philo *philo, pthread_t *thread)
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
-		if (pthread_join(thread[i], NULL) == 0)
+		if (pthread_join(thread[i], NULL) != 0)
 		{
 			free (thread);
-			return -1;
+			return (-1);
 		}
 		i++;
 	}
