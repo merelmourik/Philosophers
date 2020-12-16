@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/07 23:04:59 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 10:54:38 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 11:17:43 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	destroy_mutexes(t_data *data, int amount)
 		pthread_mutex_destroy(&data->fork_mutex[i]);
 		i++;
 	}
+	// system("leaks philo_one");			//geeft gekke error
 	return (-1);
 }
 
