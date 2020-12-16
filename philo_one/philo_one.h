@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 12:08:59 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/16 12:42:07 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,15 @@ typedef struct		s_philo
 }					t_philo;
 
 int		ft_atoi(const char *str);
-uint64_t time_stamp(void);
+int64_t time_stamp(void);
 int		initialize_input(int argc, char **argv, t_data *data);;
-void	*activate_philo(void *philosopher);
 t_philo	*initialize_philosophers(t_data *data);
-char	*long_to_str(unsigned long value);
 int		ft_strlen(const char *str);
-char	*itoa(unsigned int nb);
 void	message(char *activity, t_philo *philo);
 void	eating(t_philo *philo);
 int		initialize_mutex(t_data *data);
 int		clean_exit(t_data *data, t_philo *philo);
-void	ft_usleep(uint64_t wait_time);
+int		ft_usleep(int64_t wait_time);
+void ft_putnumber(unsigned long n);
 
 #endif
