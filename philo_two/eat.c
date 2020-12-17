@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:07 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 13:52:07 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 14:01:40 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static void	laydown_forks(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	sem_post(data->fork_sem);
+	if (sem_post(data->fork_sem) != 0)
+		{
+			data->error = -1;
+			return ;
+		}
 	sem_post(data->fork_sem);
 	return ;
 }
@@ -46,7 +50,9 @@ void	eating(t_philo *philo)
 	if (philo->data->error == -1)
 		return ;
 	if ((time_stamp(philo) - philo->last_eaten) > data->die)
-	{		//deze time_stamp kan beter worden beschermd
+	{
+		if (data->error == -1)
+			return ;
 		philo->status = DEAD;
 		return (laydown_forks(philo));
 	}
