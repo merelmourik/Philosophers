@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 15:12:32 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 11:54:32 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct		s_data {
 	uint64_t		die;
 	int64_t			eat;
 	int64_t			sleep;
-	pthread_mutex_t	*fork_mutex;
-	pthread_mutex_t	*message_mutex;
+	sem_t			*fork_sem;
+	sem_t			*message_sem;
 	t_status		status;
 }					t_data;
 
@@ -43,8 +43,6 @@ typedef struct		s_philo
 	int				id;
 	int				time_to_die;
 	int				repetition;
-	int				left;
-	int				right;
 	uint64_t		last_eaten;
 	uint64_t		start_time;
 	t_data			*data;
@@ -55,7 +53,7 @@ int		clean_exit(t_data *data, t_philo *philo);
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *str);
 int		initialize_input(int argc, char **argv, t_data *data);;
-int		initialize_mutex(t_data *data);
+int		initialize_semaphores(t_data *data);
 
 int64_t time_stamp(t_philo *philo);
 t_philo	*initialize_philosophers(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 14:45:41 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 13:45:57 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*activate_philo(void *philosopher)
 		eating(philo);
 		if (philo->data->error == -1)
 			return (NULL);
-		message(" is sleeping\n", philo);
+		message(" is sleeping\n", philo);		//beter protecten
 		message(" is thinking\n", philo);
 		ft_usleep(data->sleep, philo);
 		if (philo->data->error == -1)
@@ -35,10 +35,8 @@ static void	*activate_philo(void *philosopher)
 	return (NULL);
 }
 
-static int	philo_threads(t_philo *philo, pthread_t *thread)
+static int	philo_threads(t_philo *philo, pthread_t *thread, int i)
 {
-	int i;
-
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
@@ -49,7 +47,7 @@ static int	philo_threads(t_philo *philo, pthread_t *thread)
 			return (-1);
 		}
 		i++;
-		usleep(30);
+		usleep(30);		//nodig?
 	}
 	i = 0;
 	while (i < philo->data->philo_amount)
@@ -99,7 +97,7 @@ static int	threads(t_philo *philo)
 		return (-1);
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
-	if (philo_threads(philo, thread) == -1)
+	if (philo_threads(philo, thread, 0) == -1)
 		return (-1);
 	return (0);
 }
@@ -113,7 +111,7 @@ int		main(int argc, char **argv)
 		return (-1);
 	if (initialize_input(argc, argv, data) == -1)
 		return (clean_exit(data, NULL));
-	if (initialize_mutex(data) == -1)
+	if (initialize_semaphores(data) == -1)
 		return (clean_exit(data, NULL));
 	philo = initialize_philosophers(data);
 	if (philo == NULL)
@@ -121,6 +119,6 @@ int		main(int argc, char **argv)
 	if (threads(philo) == -1)
 		return (clean_exit(data, philo));
 	clean_exit(data, philo);
-	system("leaks philo_one");
+	system("leaks philo_two");
 	return (0);
 }

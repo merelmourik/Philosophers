@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:07 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 14:45:18 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 13:52:07 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,11 @@ static void	pickup_forks(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	if (pthread_mutex_lock(&(data->fork_mutex[philo->left])) != 0)
-	{
-		philo->data->error = -1;
-		return ;
-	}
+	sem_wait(data->fork_sem);
 	message(" has taken a fork\n", philo);
 	if (philo->data->error == -1)
 		return ;
-	if (pthread_mutex_lock(&(data->fork_mutex[philo->right])) != 0)
-	{
-		philo->data->error = -1;
-		return ;
-	}
+	sem_wait(data->fork_sem);
 	message(" has taken a fork\n", philo);
 	if (philo->data->error == -1)
 		return ;
@@ -40,13 +32,9 @@ static void	laydown_forks(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	if (pthread_mutex_unlock(&(data->fork_mutex[philo->left])) != 0)
-	{
-		philo->data->error = -1;
-		return ;
-	}
-	if (pthread_mutex_unlock(&(data->fork_mutex[philo->right])) != 0)
-		philo->data->error = -1;
+	sem_post(data->fork_sem);
+	sem_post(data->fork_sem);
+	return ;
 }
 
 void	eating(t_philo *philo)

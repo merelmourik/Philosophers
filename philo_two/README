@@ -90,7 +90,7 @@ implementation(sem_open);
 		- O_EXCL	error if create and semaphore exists.
 	Check man for more inforation about oflag.
 	The returned semaphore descriptor is available to the calling process until
-	it is cloes with sem_close(), or until the caller exits or execs.
+	it is closed with sem_close(), or until the caller exits or execs.
 	If a process makes repeaed calls to sem_open(), with the same 'name' argument,
 	the same descriptor is returned for each succesfull call, unless sem_unlink()
 	has been called on the semaphore in the interim(?).

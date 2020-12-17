@@ -3,3 +3,5 @@ a.out.dSYM/
 .idea/
 a.out
 .DS_Store
+philo_one
+philo_two

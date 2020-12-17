@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 10:43:04 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 13:16:33 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 13:38:21 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	message(char *activity, t_philo *philo)
 	}
 	if (data->status == DEAD)
 	{
-		pthread_mutex_unlock(data->message_mutex);
+		pthread_mutex_unlock(data->message_mutex);		//moet deze?
 		return ;
 	}
 	time = time_stamp(philo) - philo->start_time;

@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:20 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 14:45:39 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 13:53:03 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ t_philo	*initialize_philosophers(t_data *data)
 	{
 		philo[i].id = i + 1;
 		philo[i].data = data;
-		philo[i].left = i;
-		philo[i].right = (i == data->philo_amount - 1 ? 0 : i + 1);
 		philo[i].status = ALIVE;
 		philo[i].repetition = 0;
 		philo[i].start_time = time_stamp(philo);
@@ -60,25 +58,13 @@ t_philo	*initialize_philosophers(t_data *data)
 	return (philo);
 }
 
-int		initialize_mutex(t_data *data)
+int		initialize_semaphores(t_data *data)
 {
-	int i;
-
-	i = 0;
-	data->message_mutex = malloc(sizeof(pthread_mutex_t));
-	data->fork_mutex = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
-	if (!data->fork_mutex || !data->message_mutex)
+	data->message_sem = sem_open("/message_sem", O_CREAT, 0644, 1);
+	data->fork_sem = sem_open("/fork_sem", O_CREAT, 0644, data->philo_amount);
+	if (data->message_sem == SEM_FAILED || data->fork_sem == SEM_FAILED)
 		return (-1);
-	if (pthread_mutex_init(data->message_mutex, NULL) != 0)
-		return (-1);
-	while (i < data->philo_amount)
-	{
-		if (pthread_mutex_init(&(data->fork_mutex[i]), NULL) != 0)
-		{
-			data->philo_amount = i;
-			return (-1);
-		}
-		i++;
-	}
+	sem_unlink("/message_sem");
+	sem_unlink("/fork_sem");
 	return (0);
 }
