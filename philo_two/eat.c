@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:07 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 14:01:40 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 14:11:34 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,19 @@ static void	pickup_forks(t_philo *philo)
 	t_data *data;
 
 	data = philo->data;
-	sem_wait(data->fork_sem);
+	if (sem_wait(data->fork_sem) != 0)
+	{
+		data->error = -1;
+		return ;
+	}
 	message(" has taken a fork\n", philo);
 	if (philo->data->error == -1)
 		return ;
-	sem_wait(data->fork_sem);
+	if (sem_wait(data->fork_sem) != 0)
+	{
+		data->error = -1;
+		return ;
+	}
 	message(" has taken a fork\n", philo);
 	if (philo->data->error == -1)
 		return ;
@@ -33,11 +41,15 @@ static void	laydown_forks(t_philo *philo)
 
 	data = philo->data;
 	if (sem_post(data->fork_sem) != 0)
-		{
-			data->error = -1;
-			return ;
-		}
-	sem_post(data->fork_sem);
+	{
+		data->error = -1;
+		return ;
+	}
+	if (sem_post(data->fork_sem) != 0)
+	{
+		data->error = -1;
+		return ;
+	}
 	return ;
 }
 

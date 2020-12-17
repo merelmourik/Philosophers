@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:20 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 13:53:03 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 14:13:07 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		initialize_input(int argc, char **argv, t_data *data)
 {
 	if (argc != 5 && argc != 6)
 	{
-		write(1, "Not the correct amount of arguments\n", 37);
+		write(1, "Not the correct amount of arguments.\n", 38);
 		return (-1);
 	}
 	data->philo_amount = ft_atoi(argv[1]);

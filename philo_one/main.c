@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 10:13:36 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 14:09:13 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ static void	*activate_philo(void *philosopher)
 		eating(philo);
 		if (philo->data->error == -1)
 			return (NULL);
-		message(" is sleeping\n", philo);		//beter protecten eigenlijk
+		message(" is sleeping\n", philo);
+		if (philo->data->error == -1)
+			return (NULL);
 		message(" is thinking\n", philo);
+		if (philo->data->error == -1)
+			return (NULL);
 		ft_usleep(data->sleep, philo);
 		if (philo->data->error == -1)
 			return (NULL);
@@ -79,6 +83,8 @@ static void	*supervision(void *supervisor_philo)
 			if (philo[i].status == DEAD)
 			{
 				message(" died\n", &philo[i]);
+				if (philo->data->error == -1)
+					return (NULL);
 				data->status = DEAD;
 				return (NULL);
 			}
@@ -102,7 +108,7 @@ static int	threads(t_philo *philo)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_data		*data;
 	t_philo		*philo;
