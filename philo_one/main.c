@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 13:15:33 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 10:13:36 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*activate_philo(void *philosopher)
 		eating(philo);
 		if (philo->data->error == -1)
 			return (NULL);
-		message(" is sleeping\n", philo);
+		message(" is sleeping\n", philo);		//beter protecten eigenlijk
 		message(" is thinking\n", philo);
 		ft_usleep(data->sleep, philo);
 		if (philo->data->error == -1)
@@ -35,10 +35,8 @@ static void	*activate_philo(void *philosopher)
 	return (NULL);
 }
 
-static int	philo_threads(t_philo *philo, pthread_t *thread)
+static int	philo_threads(t_philo *philo, pthread_t *thread, int i)
 {
-	int i;
-
 	i = 0;
 	while (i < philo->data->philo_amount)
 	{
@@ -99,7 +97,7 @@ static int	threads(t_philo *philo)
 		return (-1);
 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
 		return (-1);
-	if (philo_threads(philo, thread) == -1)
+	if (philo_threads(philo, thread, 0) == -1)
 		return (-1);
 	return (0);
 }

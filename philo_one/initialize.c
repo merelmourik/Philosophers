@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/30 08:32:31 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 13:13:19 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 10:12:29 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_philo	*initialize_philosophers(t_data *data)
 	t_philo	*philo;
 	int		i;
 
+	data->error = 0;
 	if (!(philo = malloc(sizeof(t_philo) * data->philo_amount)))
 		return (NULL);
 	i = 0;

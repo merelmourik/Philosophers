@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:12:33 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/16 13:12:36 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/17 10:10:01 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void	pickup_forks(t_philo *philo)
 		return ;
 	}
 	message(" has taken a fork\n", philo);
-	if (philo->data->error == -1)
-		return ;
+	return ;
 }
 
 static void	laydown_forks(t_philo *philo)
@@ -47,6 +46,7 @@ static void	laydown_forks(t_philo *philo)
 	}
 	if (pthread_mutex_unlock(&(data->fork_mutex[philo->right])) != 0)
 		philo->data->error = -1;
+	return ;
 }
 
 void	eating(t_philo *philo)
