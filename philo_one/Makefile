@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: merelmourik <merelmourik@student.codam.      +#+                      #
+#                                                    +#+                       #
+#    Created: 2020/12/17 14:15:50 by merelmourik   #+#    #+#                  #
+#    Updated: 2020/12/17 14:15:52 by merelmourik   ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo_one
 SRCS = main.c utils.c initialize.c message.c eat.c free_and_exit.c
 CC = gcc

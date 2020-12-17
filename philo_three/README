@@ -1,0 +1,121 @@
+- memset:
+    void *memset(void *buf, int c, size_t len);
+    Memset writes len bytes of value c (converted to an unsigned char) 
+	to the string buf. The void *buf points to the location in the string 
+	where you start to write. The function returns its first 
+	argument(void *buf)
+- malloc:
+    void *malloc(size_t size);
+    Malloc allocates size bytes of memory and returns a pointer to the allocated 
+	memory. If the allocation fails, it returns NULL. The allocated memory is 
+	aligned such that is can be used for any data type. 
+- free:
+    void free(void *ptr);
+    The free function frees the allocated memory. It returns nothing. 
+- write:
+    ssize_t write(int fd, const void *buf, size_t nbyte);
+    Write tries to write nbyte of data to the object referenced by the file 
+	descriptor(fd). Upon succesful completion the number of bytes which were 
+	written are returned, otherwise a -1 and errno is set to indicate the error.
+- usleep:
+    int usleep(useconds_t microseconds);
+    This function suspends execution of the calling thread until either the 
+	microseconds have elapsed or a signal is deliverd to the thread and it action 
+	is to invoke a signal-catching function or to terminate the process.
+- gettimeofday:
+    int gettimeofday(struct timeval *restrict tp, void *restrict tzp);
+    Gives the system's notion of the current Greenwich time.
+    truct timeval: 
+    {
+        time_t       tv_sec;   /* seconds since Jan. 1, 1970 */
+        suseconds_t  tv_usec;  /* and microseconds */
+    };
+    The function returns a 0 when the call succeeded, a -1 is returned when an error
+	occured and the errno is set to indicate the error. 
+    Depending on whether tp or tzp is NULL, one of the structs is populated with the 
+	timezone struct.
+- pthread_create: 
+    int pthread_create(pthread_t *thread, const pthread_attr_t *attr, 
+    void *(*start_routine)(void *), void *arg);
+    This function is used to create a new thread, with attributes specified bij 
+	attr, within a process. Upon succesful completion this function will store 
+	the ID of the created thread in the location specified by thread. Upon succes 
+	the function will return 0, otherwise an error number will be returned.
+    - thread: pointer to an unsigned integer value that returns the thread id of 
+	the thread created.
+    - attr: pointer to a structure that is used to define thread attributes like 
+	detached state, scheduling policy en stack address. If attr is NULL, 
+	the default attributes are used.
+    - start_routine: pointer to a subroutine that is executed by the thread. 
+	The thread is creating  by executing start_routin with args as its sole argument.
+- pthread_detach: 
+    int pthread_detach(pthread_t thread);
+    This function marks the thread identified by thread as detached. When a 
+	detached thread terminates, its recources are automatically released back to 
+	the system without the need for another thread to join with the terminated 
+	thread. By default all threads are joinable, so to make a thread detach we 
+	need to call this function. 
+- pthread_join:
+    int pthread_join(pthread_t thread, void **value_ptr);
+    This function waits for the thread specified by thread to terminate. If it is 
+	already terminated, then the function returns immediately. The thread specified 
+	by thread must be joinable. If value_ptr is not NULL, then pthread_join copies 
+	the exit status of the target thread into the location pointed to by value_ptr
+- fork:
+	pid_t fork(void);
+	fork() causes creation of a new process, the new process (child process) is an
+	exact copy of the calling process, there are a few exceptions (check man).
+	And check return.
+- kill
+	Terminate a signal or process. The kill utility sends a signal to the 
+	process specifies by the pid operands. Check man for use.
+- waitpid
+	pid_t wait(int *stat_loc);
+	The wait() functions suspends execution of its calling process until stad_loc
+	information is available for a terminated child process, or a signal is
+	received. When succesfull, the stat_loc area contains termination information
+	about the process that exited.
+- exit
+	void exit(int status);
+	Before termination, exit() makes sure he cleans after you.
+
+
+When a semaphore is created, it is given a user ID and group ID which
+correspond to the effective user and group ID's of the calling process.
+There is no visible entry in the file system for the created object in this
+implementation(sem_open);
+- sem_open
+	sem_t *sem_open(const char *name, int oflag, ...);
+	The named semaphore named 'name' is initialized and opened as specified by the
+	argument of 'oflag' and a semaphore descriptor is returned to the calling
+	process.
+	oflag:
+		- O_CREATE	create the semaphore if it does not exist.
+		- O_EXCL	error if create and semaphore exists.
+	Check man for more inforation about oflag.
+	The returned semaphore descriptor is available to the calling process until
+	it is closed with sem_close(), or until the caller exits or execs.
+	If a process makes repeaed calls to sem_open(), with the same 'name' argument,
+	the same descriptor is returned for each succesfull call, unless sem_unlink()
+	has been called on the semaphore in the interim(?).
+- sem_close
+	int sem_close(sem_t *sem);
+	The system resources associated with the named semaphore referenced by 'sem'
+	are deallocated and the descriptor is invalidated.
+- sem_post
+	int sem_post(sem_t *sem);
+	The semaphore referenced by 'sem' is unlocked, the value of the semaohore is
+	incremented, and all the threads which are waiting on the semaphore are awakened.
+- sem_wait
+	int sem_wait(sem_t *sem);
+	The semaphore referenced by 'sem' is locked. When calling sem_wait(), if the 
+	semaphore's value is zero, the calling thread will block untill the lock is
+	acquired or untill the call is interrupted by a signal.
+- sem_unlink
+	int sem_unlink(const char *name);
+	The named semaphore named 'name' is removed. If the semaphore is in use by other
+	processed, tha 'name' is immediately disassociated with the semaphore, but the 
+	semaphore itself will not be removed untill after references to it have been
+	closed. Subsequent calls to sem_open() using 'name' will refer to or create a
+	new semaphor named 'name'.
+

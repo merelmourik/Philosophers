@@ -5,12 +5,12 @@
 #                                                      +:+                     #
 #    By: merelmourik <merelmourik@student.codam.      +#+                      #
 #                                                    +#+                       #
-#    Created: 2020/12/17 14:16:03 by merelmourik   #+#    #+#                  #
-#    Updated: 2020/12/17 14:16:05 by merelmourik   ########   odam.nl          #
+#    Created: 2020/12/17 14:15:39 by merelmourik   #+#    #+#                  #
+#    Updated: 2020/12/17 14:15:41 by merelmourik   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo_two
+NAME = philo_three
 SRCS = main.c utils.c initialize.c message.c eat.c free_and_exit.c
 CC = gcc
 CFLAGS = -I. -Wall -Werror -Wextra -g -pthread
@@ -32,6 +32,6 @@ clean:
 
 fclean: clean
 	@rm -f *.o
-	@rm -f philo_two
+	@rm -f philo_three
 
 re: fclean all
