@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:20 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 12:09:19 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 14:48:51 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_philo	*initialize_philosophers(t_data *data)
 		philo[i].start_time = time_stamp(philo);
 		if (philo->data->error == -1)
 			return (NULL);
-		if ((data->pid[i] = fork()) == -1)
+		if (!(data->pid[i] = fork()))
 			return (kill_processes(data, i));
 		i++;
 	}

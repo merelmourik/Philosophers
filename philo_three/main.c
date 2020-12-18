@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 12:26:51 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 14:51:36 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,19 @@
 // 	return (NULL);
 // }
 
-// static int	threads(t_philo *philo)
-// {
-// 	pthread_t	supervisor;
-// 	pthread_t	*thread;
+static int	threads(t_philo *philo)
+{
+	// pthread_t	supervisor;
+	pthread_t	*thread;
 
-// 	if (pthread_create(&supervisor, NULL, supervision, philo) != 0)
-// 		return (-1);
-// 	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
-// 		return (-1);
-// 	if (philo_threads(philo, thread, 0) == -1)
-// 		return (-1);
-// 	return (0);
-// }
+	// if (pthread_create(&supervisor, NULL, supervision, philo) != 0)
+	// 	return (-1);
+	if (!(thread = malloc(sizeof(pthread_t) * philo->data->philo_amount)))
+		return (-1);
+	// if (philo_threads(philo, thread, 0) == -1)
+	// 	return (-1);
+	return (0);
+}
 
 int			main(int argc, char **argv)
 {
@@ -121,10 +121,10 @@ int			main(int argc, char **argv)
 		return (clean_exit(data, NULL));
 	if (!(philo = initialize_philosophers(data)))
 		return (clean_exit(data, philo));
-	// if (threads(philo) == -1)
-	// 	return (clean_exit(data, philo));
+	if (threads(philo) == -1)
+		return (clean_exit(data, philo));
 	clean_exit(data, philo);
 	system("leaks philo_three");
-	exit(0);
+	exit(1);
 	return (0);
 }

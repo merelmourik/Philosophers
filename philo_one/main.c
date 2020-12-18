@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 12:12:34 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 14:36:14 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	philo_threads(t_philo *philo, pthread_t *thread, int i)
 		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0 \
 			|| philo->data->error == -1)
 		{
-			free(thread);
+			free(thread);		//en pthread_joinen?
 			return (-1);
 		}
 		i++;
