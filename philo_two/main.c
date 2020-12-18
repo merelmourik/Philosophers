@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 14:11:29 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 12:12:54 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@ int			main(int argc, char **argv)
 		return (clean_exit(data, NULL));
 	if (initialize_semaphores(data) == -1)
 		return (clean_exit(data, NULL));
-	philo = initialize_philosophers(data);
-	if (philo == NULL)
+	if (!(philo = initialize_philosophers(data)))
 		return (clean_exit(data, philo));
 	if (threads(philo) == -1)
 		return (clean_exit(data, philo));

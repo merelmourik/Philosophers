@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:20 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 14:17:53 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 12:09:19 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ t_philo	*initialize_philosophers(t_data *data)
 	int		i;
 
 	if (!(philo = malloc(sizeof(t_philo) * data->philo_amount)))
-		return (NULL);
+		return (NULL);		//is deze goed geprotect met freeen enzo?
+	if (!(data->pid = malloc(sizeof(pid_t) * data->philo_amount)))
+		return (NULL);		//eerst philo freeen?
 	i = 0;
 	while (i < data->philo_amount)
 	{
@@ -53,6 +55,8 @@ t_philo	*initialize_philosophers(t_data *data)
 		philo[i].start_time = time_stamp(philo);
 		if (philo->data->error == -1)
 			return (NULL);
+		if ((data->pid[i] = fork()) == -1)
+			return (kill_processes(data, i));
 		i++;
 	}
 	return (philo);
