@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 12:07:53 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 15:12:53 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct		s_philo
 	int				id;
 	int				time_to_die;
 	int				repetition;
-	pid_t			pid;
 	uint64_t		last_eaten;
 	uint64_t		start_time;
 	t_data			*data;
