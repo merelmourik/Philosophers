@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:04:34 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:23:55 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	*supervision(void *supervisor_philo)
 			message(" died\n", philo);
 			if (philo->data->error == -1)
 				return (NULL);
+			kill_processes(data, data->philo_amount);
 			// while (i < philo->data->philo_amount)
 			// {
 			// 	waitpid(philo->data->pid[i], NULL, 0);

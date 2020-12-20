@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:07 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:03:52 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:23:26 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	eating(t_philo *philo)
 			return ;
 		// laydown_f÷orks(philo);
 		philo->status = DEAD;
-		exit(0);
+		// exit(0);
 		// message(" died\n", philo);
 		// kill_processes(data, data->philo_amount);
 		// exit(0);

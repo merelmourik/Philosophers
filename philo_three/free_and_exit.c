@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:13 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 12:51:02 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:24:03 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void			kill_processes(t_data *data, int amount)
 		kill(data->pid[i], SIGINT);
 		i++;
 	}
-	system("leaks philo_three");
-	// exit(0);
+	// system("leaks philo_three");
+	exit(0);
 }
 
 int			clean_exit(t_data *data, t_philo *philo)
