@@ -6,17 +6,16 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:23:55 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:35:30 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
 static void	*supervision(void *supervisor_philo)
-{				//deze vangt de signalen helemaal niet op
+{
 	t_philo *philo;
 	t_data	*data;
-	// int i = 0;
 
 	philo = supervisor_philo;
 	data = philo[0].data;
@@ -25,15 +24,10 @@ static void	*supervision(void *supervisor_philo)
 		if (philo->status == DEAD)
 		{
 			message(" died\n", philo);
+			sem_wait(data->message_sem);
 			if (philo->data->error == -1)
 				return (NULL);
 			kill_processes(data, data->philo_amount);
-			// while (i < philo->data->philo_amount)
-			// {
-			// 	waitpid(philo->data->pid[i], NULL, 0);
-			// 	i++;
-			// }
-			// exit(0);
 			return (NULL);
 		}
 	}
@@ -70,7 +64,7 @@ static int	activate_philo(t_philo *philosopher, int i)
 	return (0);
 }
 
-static int	philo_processes(t_philo *philo)
+static int	philo_processes(t_philo *philo)		//deze geeft nooit -1 terug?
 {
 	int			i;
 	pid_t		pid;
@@ -113,8 +107,7 @@ int			main(int argc, char **argv)
 	if (!(philo = initialize_philosophers(data)))
 		return (clean_exit(data, philo));
 	if (philo_processes(philo) == -1)
-		return (clean_exit(data, philo));
+		clean_exit(data, philo);
 	clean_exit(data, philo);
-	// system("leaks philo_three");
 	return (0);
 }
