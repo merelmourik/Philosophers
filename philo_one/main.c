@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 14:36:14 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 16:02:20 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ static void	*supervision(void *supervisor_philo)
 				if (philo->data->error == -1)
 					return (NULL);
 				data->status = DEAD;
-				return (NULL);
+				return (NULL);			//klopt deze wel?
 			}
 			i++;
 		}
 	}
-	return (NULL);
+	return (NULL);			//en deze? ook checken in andere codes
 }
 
 static int	threads(t_philo *philo)

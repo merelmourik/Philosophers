@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:30:17 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 15:12:53 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/18 15:57:27 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_philo	*initialize_philosophers(t_data *data);
 void	eating(t_philo *philo);
 void	ft_putnumber(unsigned long n);
 void	ft_usleep(int64_t wait_time, t_philo *philo);
-void	*kill_processes(t_data *data, int i);
+int		kill_processes(t_data *data, int i);
 void	message(char *activity, t_philo *philo);
 
 #endif
