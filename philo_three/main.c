@@ -6,17 +6,16 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:04:34 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:15:38 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
 static void	*supervision(void *supervisor_philo)
-{				//deze vangt de signalen helemaal niet op
+{
 	t_philo *philo;
 	t_data	*data;
-	// int i = 0;
 
 	philo = supervisor_philo;
 	data = philo[0].data;
@@ -27,12 +26,7 @@ static void	*supervision(void *supervisor_philo)
 			message(" died\n", philo);
 			if (philo->data->error == -1)
 				return (NULL);
-			// while (i < philo->data->philo_amount)
-			// {
-			// 	waitpid(philo->data->pid[i], NULL, 0);
-			// 	i++;
-			// }
-			// exit(0);
+			kill_processes(data, data->philo_amount);
 			return (NULL);
 		}
 	}
@@ -49,7 +43,7 @@ static int	activate_philo(t_philo *philosopher, int i)
 	data = philo->data;
 	philo->last_eaten = philo->start_time;
 	if (pthread_create(&main, NULL, supervision, philo) != 0)
-		return (-1);
+		exit(0);
 	while (data->status == ALIVE && (data->repetition == -1 || \
 			data->repetition > philo->repetition))
 	{
