@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:13 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 12:04:38 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 12:07:46 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ void			kill_processes(t_data *data, int amount)
 {
 	int i;
 
-	i = -1;
+	i = 0;
 	while (i < amount)
 	{
 		kill(data->pid[i], SIGINT);
 		i++;
 	}
-	// printf("HOI\n");
 	// system("leaks philo_three");
 	// exit(0);
 }
@@ -38,5 +37,6 @@ int			clean_exit(t_data *data, t_philo *philo)
 		sem_close(data->fork_sem);
 	if (data->pid)
 		kill_processes(data, data->philo_amount);		//data->pid niet freeen?
+	// printf("HOI\n");
 	return (-1);
 }
