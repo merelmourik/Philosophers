@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 11:53:10 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 12:04:16 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	*supervision(void *supervisor_philo)
 					return (NULL);
 				data->status = DEAD;
 				// return (NULL);
-				exit(0);
+				// exit(0);
 			}
 			i++;
 		}
@@ -96,7 +96,7 @@ static int	philo_processes(t_philo *philo)
 		waitpid(philo->data->pid[i], NULL, 0);
 		i++;
 	}
-	if (!(pthread_join(main, NULL)))
+	if (!(pthread_detach(main)))
 		return (-1);
 	return (0);		//exit 0?
 }
@@ -116,6 +116,7 @@ int			main(int argc, char **argv)
 		return (clean_exit(data, philo));
 	if (philo_processes(philo) == -1)
 		return (clean_exit(data, philo));
+	// printf("HOI\n");
 	clean_exit(data, philo);
 	system("leaks philo_three");
 	return (0);

@@ -6,24 +6,25 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:13 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 16:06:52 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 12:04:38 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-int			kill_processes(t_data *data, int amount)
+void			kill_processes(t_data *data, int amount)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	while (i < amount)
 	{
 		kill(data->pid[i], SIGINT);
 		i++;
 	}
-	system("leaks philo_three");
-	return (-1);
+	// printf("HOI\n");
+	// system("leaks philo_three");
+	// exit(0);
 }
 
 int			clean_exit(t_data *data, t_philo *philo)
