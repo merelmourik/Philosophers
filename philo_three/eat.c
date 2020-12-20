@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:07 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 14:15:21 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/20 13:03:52 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ void	eating(t_philo *philo)
 	{
 		if (data->error == -1)
 			return ;
+		// laydown_f÷orks(philo);
 		philo->status = DEAD;
-		return (laydown_forks(philo));
+		exit(0);
+		// message(" died\n", philo);
+		// kill_processes(data, data->philo_amount);
+		// exit(0);
+		// printf("HOI\n");
+		return ;
 	}
 	philo->last_eaten = time_stamp(philo);
 	message(" is eating\n", philo);
