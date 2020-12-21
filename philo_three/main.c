@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:35:30 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/21 09:56:00 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static void	*supervision(void *supervisor_philo)
 	{
 		if (philo->status == DEAD)
 		{
+			usleep(100);
 			message(" died\n", philo);
-			sem_wait(data->message_sem);
-			if (philo->data->error == -1)
-				return (NULL);
+			data->status = DEAD;
+			// sem_wait(data->message_sem);
 			kill_processes(data, data->philo_amount);
-			return (NULL);
 		}
 	}
 	return (NULL);
@@ -45,7 +44,7 @@ static int	activate_philo(t_philo *philosopher, int i)
 	philo->last_eaten = philo->start_time;
 	if (pthread_create(&main, NULL, supervision, philo) != 0)
 		return (-1);
-	while (data->status == ALIVE && (data->repetition == -1 || \
+	while (philo->status == ALIVE && (data->repetition == -1 || \
 			data->repetition > philo->repetition))
 	{
 		eating(philo);

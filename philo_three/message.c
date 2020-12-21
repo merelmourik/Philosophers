@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:32 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 14:17:59 by merelmourik   ########   odam.nl         */
+/*   Updated: 2020/12/21 09:56:25 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	message(char *activity, t_philo *philo)
 
 	data = philo->data;
 	sem_wait(data->message_sem);
-	if (data->status == DEAD)
-	{
-		sem_post(data->message_sem);
-		return ;
-	}
 	time = time_stamp(philo) - philo->start_time;
 	if (philo->data->error == -1)
 		return ;
