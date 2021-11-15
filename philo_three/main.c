@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/21 09:56:00 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 12:33:51 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	activate_philo(t_philo *philosopher, int i)
 	return (0);
 }
 
-static int	philo_processes(t_philo *philo)		//deze geeft nooit -1 terug?
+static int	philo_processes(t_philo *philo)	
 {
 	int			i;
 	pid_t		pid;

@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:12:33 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/17 10:10:01 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 12:36:20 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	eating(t_philo *philo)
 	if (philo->data->error == -1)
 		return ;
 	if ((time_stamp(philo) - philo->last_eaten) > data->die)
-	{		//deze time_stamp kan beter worden beschermd
+	{	
 		philo->status = DEAD;
 		return (laydown_forks(philo));
 	}

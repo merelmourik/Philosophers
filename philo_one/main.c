@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/18 16:02:20 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 12:36:08 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	philo_threads(t_philo *philo, pthread_t *thread, int i)
 		if (pthread_create(&thread[i], NULL, activate_philo, &philo[i]) != 0 \
 			|| philo->data->error == -1)
 		{
-			free(thread);		//en pthread_joinen?
+			free(thread);
 			return (-1);
 		}
 		i++;
@@ -86,12 +86,12 @@ static void	*supervision(void *supervisor_philo)
 				if (philo->data->error == -1)
 					return (NULL);
 				data->status = DEAD;
-				return (NULL);			//klopt deze wel?
+				return (NULL);
 			}
 			i++;
 		}
 	}
-	return (NULL);			//en deze? ook checken in andere codes
+	return (NULL);
 }
 
 static int	threads(t_philo *philo)
@@ -124,6 +124,6 @@ int			main(int argc, char **argv)
 	if (threads(philo) == -1)
 		return (clean_exit(data, philo));
 	clean_exit(data, philo);
-	system("leaks philo_one");
+	// system("leaks philo_one");		You can uncomment this to check if there are leaks (there aren't)
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: merelmourik <merelmourik@student.codam.      +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/17 14:15:50 by merelmourik   #+#    #+#                  #
-#    Updated: 2020/12/17 14:15:52 by merelmourik   ########   odam.nl          #
+#    Updated: 2021/11/15 12:43:32 by merelmourik   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,19 @@ $(NAME): $(OBJS)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+	
+surviving: all
+	@./philo_one 50 1000 300 500 5
+
+dying: all
+	@./philo_one 5 100 50 50
+
+two: all
+	@./philo_one 2 100 30 50 5
+
+
+forever: all
+	@./philo_one 5 100 30 50
 
 clean:
 	@echo ">> Cleaning..."
