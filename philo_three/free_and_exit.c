@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:13 by merelmourik   #+#    #+#                 */
-/*   Updated: 2020/12/20 13:28:45 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 20:07:53 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int			clean_exit(t_data *data, t_philo *philo)
 	if (data->fork_sem)
 		sem_close(data->fork_sem);
 	if (data->pid)
-		kill_processes(data, data->philo_amount);		//data->pid niet freeen?
+		kill_processes(data, data->philo_amount);
 	return (-1);
 }

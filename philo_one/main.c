@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.42.fr>      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/25 12:27:55 by merelmourik   #+#    #+#                 */
-/*   Updated: 2021/11/15 12:36:08 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 20:07:26 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,6 @@ int			main(int argc, char **argv)
 	if (threads(philo) == -1)
 		return (clean_exit(data, philo));
 	clean_exit(data, philo);
-	// system("leaks philo_one");		You can uncomment this to check if there are leaks (there aren't)
+	// system("leaks philo_one");
 	return (0);
 }

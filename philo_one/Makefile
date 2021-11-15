@@ -6,7 +6,7 @@
 #    By: merelmourik <merelmourik@student.codam.      +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/17 14:15:50 by merelmourik   #+#    #+#                  #
-#    Updated: 2021/11/15 12:43:32 by merelmourik   ########   odam.nl          #
+#    Updated: 2021/11/15 20:10:50 by merelmourik   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ dying: all
 
 two: all
 	@./philo_one 2 100 30 50 5
-
 
 forever: all
 	@./philo_one 5 100 30 50

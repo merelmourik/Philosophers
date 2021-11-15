@@ -6,7 +6,7 @@
 /*   By: merelmourik <merelmourik@student.codam.      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:24:26 by merelmourik   #+#    #+#                 */
-/*   Updated: 2021/11/15 12:33:51 by merelmourik   ########   odam.nl         */
+/*   Updated: 2021/11/15 20:08:04 by merelmourik   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	*supervision(void *supervisor_philo)
 			usleep(100);
 			message(" died\n", philo);
 			data->status = DEAD;
-			// sem_wait(data->message_sem);
 			kill_processes(data, data->philo_amount);
 		}
 	}
