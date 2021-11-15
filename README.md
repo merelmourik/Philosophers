@@ -1,8 +1,8 @@
 ##  Philosophers 
 
-A group of philosophers is sitting at a round table either eating, thinking or sleeping. They only can do one of those thing at a time and they all only have one fork; eventhough they need two forks to eat. This means that the philosohers need to share their forks, but unfortunately there is no possibility for them to communicate with each other. The only solution is to wait till a fork is avaibale, let's just hope that it won't take too long..
+A group of philosophers is sitting at a round table either eating, thinking or sleeping. They only can do one of those things at a time and they all only have one fork; eventhough they need two forks to eat. This means that the philosohers need to share their forks, but unfortunately there is no possibility for them to communicate with each other. The only solution is to wait till a fork is avaibale, let's just hope that it won't take too long..
 
-The goal is that none of the philosophers dies, but sometimes there is just not enough time and one of them will die. If this happens, the simulation stops.
+The goal is that none of the philosophers die, but sometimes there is just not enough time and one of them will die. If this happens, the simulation stops.
 
 The program starts with the following arguments;
 	- the amount of philosphers around the table.
